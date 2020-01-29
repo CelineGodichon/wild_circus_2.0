@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Artist;
+use App\Entity\Performance;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,7 +16,12 @@ class ArtistType extends AbstractType
         $builder
             ->add('nickname')
             ->add('imageName')
-            ->add('performances')
+            ->add('performances', EntityType::class, [
+                'class' => Performance::class,
+                'choice_label' => 'name',
+                'expanded' => true,
+                'multiple' => true
+            ])
         ;
     }
 

@@ -1,0 +1,26 @@
+.boardtable{
+  h1{
+    font-size: 6rem;
+    color: $blood;
+  }
+  .boardtable-section{
+    margin-bottom: 1rem;
+    width: 400px;
+    height: 100px;
+    background-color: white;
+    border-radius: 1rem;
+    &:hover{
+      background-color: $blood;
+    }
+    .boardtable-link{
+      font-size : 4rem;
+      color : $blood;
+      &:hover{
+        color: black;
+        text-decoration: none;
+
+      }
+    }
+
+  }
+}

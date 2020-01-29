@@ -3,28 +3,34 @@
 {% block title %}Performance index{% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="container-fluid text-white">
     <h1>Performance index</h1>
 
-    <table class="table">
+    <table class="table text-white">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
-                <th>Date</th>
                 <th>ImageName</th>
+{#
+                <th>Actors</th>
+#}
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for performance in performances %}
             <tr>
-                <td>{{ performance.id }}</td>
                 <td>{{ performance.name }}</td>
                 <td>{{ performance.description }}</td>
                 <td>{{ performance.date ? performance.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ performance.imageName }}</td>
+                {% for artist in performance.artists %}
+               {# <td>
+                            {{ artist.nickname }}
+                </td>#}
+                {% endfor %}
                 <td>
                     <a href="{{ path('performance_show', {'id': performance.id}) }}">show</a>
                     <a href="{{ path('performance_edit', {'id': performance.id}) }}">edit</a>

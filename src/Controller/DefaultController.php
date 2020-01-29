@@ -25,7 +25,7 @@ class DefaultController extends AbstractController
 
 
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/admin", name="admin_boardtable")
      */
     public function boardtable()
     {
