@@ -3,17 +3,19 @@
 {% block title %}Artist index{% endblock %}
 
 {% block body %}
-    <div class="container text-white">
+    <div class="container text-white my-5">
 
     <h1>Artist index</h1>
 
-    <table class="table text-white">
+        <a href="{{ path('artist_new') }}" class="btn btn-secondary m-2">Create new</a>
+
+        <table class="table text-white">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nickname</th>
                 <th>ImageName</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -23,8 +25,8 @@
                 <td>{{ artist.nickname }}</td>
                 <td>{{ artist.imageName }}</td>
                 <td>
-                    <a href="{{ path('artist_show', {'id': artist.id}) }}">show</a>
-                    <a href="{{ path('artist_edit', {'id': artist.id}) }}">edit</a>
+                    <a href="{{ path('artist_show', {'id': artist.id}) }}"><i class="fab fa-optin-monster fa-2x"></i></a>
+                    <a href="{{ path('artist_edit', {'id': artist.id}) }}"><i class="fas fa-pen-nib fa-2x"></i></a>
                 </td>
             </tr>
         {% else %}
@@ -34,7 +36,5 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('artist_new') }}">Create new</a>
     </div>
 {% endblock %}

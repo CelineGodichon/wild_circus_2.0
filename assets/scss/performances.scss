@@ -1,11 +1,15 @@
+.form-search {
+min-width: 30rem;
+}
+
 .pagination {
-  .page-link {
-    color: black;
-  }
-  .page-item.active {
     .page-link {
-      background-color: $blood;
-      border-color: $blood;
+      color: black;
+    }
+    .page-item.active {
+      .page-link {
+        background-color: $blood;
+        border-color: $blood;
+      }
     }
   }
-}

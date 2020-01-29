@@ -3,11 +3,11 @@
 {% block title %}City{% endblock %}
 
 {% block body %}
-    <div class="container text-white">
-    <h1>City</h1>
+    <div class="container text-white d-flex flex-column my-5">
+        <h1>City</h1>
 
-    <table class="table text-white">
-        <tbody>
+        <table class="table text-white">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ city.id }}</td>
@@ -16,13 +16,17 @@
                 <th>Name</th>
                 <td>{{ city.name }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+        <div class="d-flex align-self-center">
+            <a href="{{ path('city_index') }}" class="btn btn-primary">
+                <i class="fas fa-long-arrow-alt-left fa-2x"></i>
+            </a>
 
-    <a href="{{ path('city_index') }}">back to list</a>
+            <a href="{{ path('city_edit', {'id': city.id}) }}" class="btn btn-secondary"><i
+                        class="fas fa-pen-nib fa-2x"></i></a>
 
-    <a href="{{ path('city_edit', {'id': city.id}) }}">edit</a>
-
-    {{ include('city/_delete_form.html.twig') }}
+            {{ include('city/_delete_form.html.twig') }}
+        </div>
     </div>
 {% endblock %}

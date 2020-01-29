@@ -17,6 +17,8 @@ class ArtistController extends AbstractController
 {
     /**
      * @Route("/", name="artist_index", methods={"GET"})
+     * @param ArtistRepository $artistRepository
+     * @return Response
      */
     public function index(ArtistRepository $artistRepository): Response
     {
@@ -27,6 +29,8 @@ class ArtistController extends AbstractController
 
     /**
      * @Route("/new", name="artist_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -38,6 +42,7 @@ class ArtistController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($artist);
             $entityManager->flush();
+            $this->addFlash('success', 'Your new artist has been successfully added');
 
             return $this->redirectToRoute('artist_index');
         }
@@ -50,6 +55,8 @@ class ArtistController extends AbstractController
 
     /**
      * @Route("/{id}", name="artist_show", methods={"GET"})
+     * @param Artist $artist
+     * @return Response
      */
     public function show(Artist $artist): Response
     {
@@ -60,6 +67,9 @@ class ArtistController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="artist_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Artist $artist
+     * @return Response
      */
     public function edit(Request $request, Artist $artist): Response
     {
@@ -68,6 +78,7 @@ class ArtistController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'Your artist has been successfully edited');
 
             return $this->redirectToRoute('artist_index');
         }
@@ -80,13 +91,17 @@ class ArtistController extends AbstractController
 
     /**
      * @Route("/{id}", name="artist_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Artist $artist
+     * @return Response
      */
     public function delete(Request $request, Artist $artist): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$artist->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $artist->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($artist);
-            $entityManager->flush();
+            $entityManager->flush();$this->addFlash('success', 'Your artist has been successfully deleted');
+
         }
 
         return $this->redirectToRoute('artist_index');
