@@ -5,18 +5,46 @@
 {% block body %}
 
     {% include 'homepage/_carousel.html.twig' %}
-<div class="container my-5 performances-list">
-    <div class="row">
-    {% for performance in performances %}
-        <div class="card col-3">
-            <img class="card-img-top" src="/uploads/performance/{{ performance.imageName}}" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">{{ performance.name }}</h5>
-                <p class="card-text">{{ performance.description }}</p>
-                <a href="#" class="btn btn-primary">Win a Ticket</a>
+    <div class="container">
+        <div class="d-flex flex-column my-5 performances-list">
+            <div class="row">
+                {% for performance in performances %}
+                    <div class="card col-3">
+                        <img class="card-img-top" src="/uploads/performance/{{ performance.imageName }}"
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ performance.name }}</h5>
+                            <p class="card-text">{{ performance.description }}</p>
+                            <a href="#" class="btn btn-secondary">See performance</a>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
+            <a href="{{ path('performances') }}" class="align-self-end mt-3">
+                <button class="btn btn-danger">
+                    See all performances
+                </button>
+            </a>
+
         </div>
-    {% endfor %}
-    </div>
+
+        <div class="d-flex flex-column my-5 artists-list">
+            <div class="row">
+                {% for artist in artists %}
+                    <div class="card col-3">
+                        <img class="card-img-top" src="/uploads/performance/{{ artist.imageName }}"
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ artist.nickname }}</h5>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <a href="{{ path('artists') }}" class="align-self-end mt-3">
+                <button class="btn btn-danger">
+                    See all artists
+                </button>
+            </a>
+        </div>
     </div>
 {% endblock %}

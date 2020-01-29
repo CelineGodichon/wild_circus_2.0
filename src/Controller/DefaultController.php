@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ArtistRepository;
 use App\Repository\PerformanceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,12 +15,46 @@ class DefaultController extends AbstractController
      * @param PerformanceRepository $performanceRepository
      * @return Response
      */
-    public function index(PerformanceRepository $performanceRepository)
+    public function index(PerformanceRepository $performanceRepository, ArtistRepository $artistRepository)
     {
-        $performances = $performanceRepository->findAll();
+        $performances = $performanceRepository->findBy([], [], 4);
+        $artists = $artistRepository->findBy([], [], 4);
 
         return $this->render('homepage/index.html.twig', [
+            'artists' => $artists,
             'performances' => $performances,
+        ]);
+    }
+
+    /**
+     * @Route("/performances", name="performances")
+     * @param PerformanceRepository $performanceRepository
+     * @return Response
+     */
+
+    public function showPerformances(PerformanceRepository $performanceRepository){
+
+        $performances = $performanceRepository->findAll();
+
+        return $this->render('wild_circus/performances.html.twig', [
+            'performances' => $performances,
+
+        ]);
+    }
+
+    /**
+     * @Route("/artists", name="artists")
+     * @param ArtistRepository $artistRepository
+     * @return Response
+     */
+
+    public function showArtists(ArtistRepository $artistRepository){
+
+        $artists = $artistRepository->findAll();
+
+        return $this->render('wild_circus/artists.html.twig', [
+            'artists' => $artists,
+
         ]);
     }
 

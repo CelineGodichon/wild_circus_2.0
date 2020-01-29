@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container my-5 performances-list">
+        <div class="row">
+            {% for performance in performances %}
+                <div class="card col-3">
+                    <img class="card-img-top" src="/uploads/performance/{{ performance.imageName }}"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ performance.name }}</h5>
+                        <p class="card-text">{{ performance.description }}</p>
+                        <a href="#" class="btn btn-primary ">Win a Ticket</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
