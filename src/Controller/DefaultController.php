@@ -15,4 +15,13 @@ class DefaultController extends AbstractController
         return $this->render('homepage/index.html.twig', [
         ]);
     }
+
+    /**
+     * @Route("/admin", name="admin")
+     */
+    public function boardtable()
+    {
+        return $this->render('admin/boardtable.html.twig', [
+        ]);
+    }
 }
