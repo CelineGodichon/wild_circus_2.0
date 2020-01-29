@@ -11,13 +11,15 @@
         <div class="d-flex flex-column my-5 cards-list">
             <div class="row">
                 {% for performance in performances %}
-                    <div class="card col-3">
-                        <img class="card-img-top" src="/uploads/performance/{{ performance.imageName }}"
-                             alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ performance.name }}</h5>
-                            <p class="card-text">{{ performance.description }}</p>
-                            <a href="#" class="btn btn-secondary">See performance</a>
+                    <div class="col-3">
+                        <div class="card">
+                            <img class="card-img-top" src="/uploads/performance/{{ performance.imageName }}"
+                                 alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ performance.name }}</h5>
+                                <p class="card-text">{{ performance.description }}</p>
+                                <a href="#" class="btn btn-secondary">See performance</a>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
@@ -34,11 +36,13 @@
         <div class="d-flex flex-column my-5 cards-list">
             <div class="row">
                 {% for artist in artists %}
-                    <div class="card col-3">
-                        <img class="card-img-top" src="/uploads/artist/{{ artist.imageName }}"
-                             alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ artist.nickname }}</h5>
+                    <div class="col-3">
+                        <div class="card">
+                            <img class="card-img-top" src="/uploads/artist/{{ artist.imageName }}"
+                                 alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ artist.nickname }}</h5>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}

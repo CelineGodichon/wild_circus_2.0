@@ -5,11 +5,13 @@
         <h1 class="typo-horror"> - ARTISTS -</h1>
         <div class="row">
             {% for artist in artists %}
-                <div class="card col-3">
-                    <img class="card-img-top" src="/uploads/artist/{{ artist.imageName }}"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ artist.nickname }}</h5>
+                <div class="col-3">
+                    <div class="card">
+                        <img class="card-img-top" src="/uploads/artist/{{ artist.imageName }}"
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ artist.nickname }}</h5>
+                        </div>
                     </div>
                 </div>
             {% endfor %}
