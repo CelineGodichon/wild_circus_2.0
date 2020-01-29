@@ -1,6 +1,12 @@
-.navbar{
-  h1{
-    color :$blood;
+.navbar {
+  h1 {
+    color: $blood;
     text-shadow: 1px 1px 1px black;
+  }
+  a:hover {
+    color: $blood;
+  }
+  ul > li {
+    margin-right: 30px;
   }
 }

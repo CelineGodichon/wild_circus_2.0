@@ -5,17 +5,24 @@
             <img src="/uploads/performance/{{ performance.imageName }}" alt="">
             <h1 class="typo-horror">{{ performance.name }}</h1>
         </div>
-        <h3>What kind of horror you will see : </h3>
+        <h3 class="typo-horror">What kind of horror you will see : </h3>
         <p>{{ performance.description }}</p>
 
-        <h3>Artists</h3>
-        <ul class="list-unstyled">
+        <h3 class="my-5 typo-horror">All Monsters : </h3>
+        <div class="list-unstyled artist-list d-flex flex-wrap">
             {% for artist in performance.artists %}
-                <li><a href="{{ path('show_artist', {id : artist.id}) }}">{{ artist.nickname }}</a></li>
+
+                <a href="{{ path('show_artist', {id : artist.id}) }}">
+                    <div class="m-3 d-flex flex-column align-items-center">
+                        <img src="/uploads/artist/{{ artist.imageName }} " alt="Artist picture">
+                        <p>{{ artist.nickname }}</p>
+                    </div>
+                </a>
+
             {% else %}
                 No artist for this performance
             {% endfor %}
-        </ul>
+        </div>
 
         <a href="#" class="btn btn-primary align-self-center">Try to win a Ticket</a>
     </div>
