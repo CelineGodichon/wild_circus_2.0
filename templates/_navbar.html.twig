@@ -17,9 +17,15 @@
                 <a class="nav-link" target="_blank" href="https://www.google.com/search?q=animal+cruelty+circus&client=ubuntu&hs=MuY&channel=fs&sxsrf=ACYBGNQBHuSQCN6ISJYfufed7B7nnuN4sw:1580315598458&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjq74OvnqnnAhWwAmMBHX3SA70Q_AUoAXoECAsQAw&biw=1600&bih=748">Animals</a>
             </li>
             {% if app.user %}
+                {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('admin_boardtable') }}"> Boardtable</a>
                 </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link"">Kikou</a>
+                        </li>
+                        {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
                 </li>
