@@ -1,8 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container my-5 cards-list">
+    <div class="container d-flex flex-column my-5 cards-list">
         <h1 class="typo-horror"> - PERFORMANCES - </h1>
+        <div class="d-flex my-5 align-self-center">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-danger">
+                Chercher
+            </button>
+            {{ form_end(form) }}
+        </div>
 
         <div class="row">
             {% for performance in performances %}
@@ -11,14 +19,17 @@
                          alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ performance.name }}</h5>
+
                         <p class="card-text">{{ performance.description }}</p>
+                        <p>{{ performance.date|date("d/m/Y H:i:s") }}</p>
+                        <p>{{ performance.city.name }}</p>
                         <a href="#" class="btn btn-primary ">Win a Ticket</a>
                     </div>
                 </div>
             {% endfor %}
         </div>
         <div class="pagination d-flex justify-content-center my-5">
-            {{ knp_pagination_render(performances)}}
+            {{ knp_pagination_render(performances) }}
         </div>
     </div>
 {% endblock %}

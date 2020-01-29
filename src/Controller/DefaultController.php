@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\PerformanceSearch;
+use App\Form\PerformanceSearchType;
 use App\Repository\ArtistRepository;
 use App\Repository\PerformanceRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -13,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends AbstractController
 {
     const NB_PERFORMANCES = 4;
+
     /**
      * @Route("/", name="homepage")
      * @param PerformanceRepository $performanceRepository
@@ -42,15 +45,21 @@ class DefaultController extends AbstractController
      * @return Response
      */
 
-    public function showPerformances(Request $request, PerformanceRepository $performanceRepository, PaginatorInterface $paginator){
+    public function showPerformances(Request $request, PerformanceRepository $performanceRepository, PaginatorInterface $paginator)
+    {
+
+        $search = new PerformanceSearch();
+        $form = $this->createForm(PerformanceSearchType::class, $search);
+        $form->handleRequest($request);
 
         $performances = $paginator->paginate(
-            $performanceRepository->findAll(),
-        $request->query->getInt('page', 1),
-        self::NB_PERFORMANCES);
+            $performanceRepository->findPerformanceSearchQuery($search),
+            $request->query->getInt('page', 1),
+            self::NB_PERFORMANCES);
 
         return $this->render('wild_circus/performances.html.twig', [
             'performances' => $performances,
+            'form' => $form->createView(),
 
         ]);
     }
@@ -61,7 +70,8 @@ class DefaultController extends AbstractController
      * @return Response
      */
 
-    public function showArtists(ArtistRepository $artistRepository){
+    public function showArtists(ArtistRepository $artistRepository)
+    {
 
         $artists = $artistRepository->findAll();
 
