@@ -4,12 +4,15 @@ namespace App\Controller;
 
 use App\Repository\ArtistRepository;
 use App\Repository\PerformanceRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
+    const NB_PERFORMANCES = 4;
     /**
      * @Route("/", name="homepage")
      * @param PerformanceRepository $performanceRepository
@@ -33,13 +36,18 @@ class DefaultController extends AbstractController
 
     /**
      * @Route("/performances", name="performances")
+     * @param Request $request
      * @param PerformanceRepository $performanceRepository
+     * @param PaginatorInterface $paginator
      * @return Response
      */
 
-    public function showPerformances(PerformanceRepository $performanceRepository){
+    public function showPerformances(Request $request, PerformanceRepository $performanceRepository, PaginatorInterface $paginator){
 
-        $performances = $performanceRepository->findAll();
+        $performances = $paginator->paginate(
+            $performanceRepository->findAll(),
+        $request->query->getInt('page', 1),
+        self::NB_PERFORMANCES);
 
         return $this->render('wild_circus/performances.html.twig', [
             'performances' => $performances,
