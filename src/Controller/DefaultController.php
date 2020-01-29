@@ -27,11 +27,11 @@ class DefaultController extends AbstractController
     {
         $performances = $performanceRepository->findAll();
         shuffle($performances);
-        $performances = array_slice($performances, 0, 4);
+        $performances = array_slice($performances, 0, 6);
 
         $artists = $artistRepository->findAll();
         shuffle($artists);
-        $artists = array_slice($artists, 0, 4);
+        $artists = array_slice($artists, 0, 3);
 
         return $this->render('homepage/index.html.twig', [
             'artists' => $artists,
