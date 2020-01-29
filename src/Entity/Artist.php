@@ -33,6 +33,11 @@ class Artist
      */
     private $performances;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
     public function __construct()
     {
         $this->performances = new ArrayCollection();
@@ -89,6 +94,18 @@ class Artist
         if ($this->performances->contains($performance)) {
             $this->performances->removeElement($performance);
         }
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
