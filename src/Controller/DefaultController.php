@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Artist;
 use App\Entity\Performance;
 use App\Entity\PerformanceSearch;
 use App\Form\PerformanceSearchType;
@@ -15,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-    const NB_PERFORMANCES = 4;
+    const NB_PERFORMANCES = 6;
 
     /**
      * @Route("/", name="homepage")
@@ -92,6 +93,19 @@ class DefaultController extends AbstractController
         return $this->render('wild_circus/show_performance.html.twig', [
             'performance' => $performance,
             'id' => $performance->getId()
+        ]);
+    }
+
+    /**
+     * @Route("/artist/show/{id}", name="show_artist", methods={"GET"})
+     * @param Artist $artist
+     * @return Response
+     */
+    public function showOneArtist(Artist $artist)
+    {
+        return $this->render('wild_circus/show_artist.html.twig', [
+            'artist' => $artist,
+            'id' => $artist->getId()
         ]);
     }
 

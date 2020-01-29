@@ -9,9 +9,9 @@
         <p>{{ performance.description }}</p>
 
         <h3>Artists</h3>
-        <ul>
+        <ul class="list-unstyled">
             {% for artist in performance.artists %}
-                <li><a >{{ artist.nickname }}</a></li>
+                <li><a href="{{ path('show_artist', {id : artist.id}) }}">{{ artist.nickname }}</a></li>
             {% else %}
                 No artist for this performance
             {% endfor %}

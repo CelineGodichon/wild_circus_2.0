@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container my-5 show-performance d-flex flex-column">
+        <div class="performance-img-title my-5">
+            <img src="/uploads/artist/{{ artist.imageName }}" alt="">
+            <h1 class="typo-horror">{{ artist.nickname }}</h1>
+        </div>
+
+        <h3>All Performances :</h3>
+        <ul class="list-unstyled">
+            {% for performance in artist.performances %}
+                <li>
+                    <a href="{{ path('show_performance', {id : performance.id}) }}">
+                        {{ performance.name }}
+                    </a>
+                </li>
+            {% else %}
+                No performance for this artist
+            {% endfor %}
+        </ul>
+
+        <a href="#" class="btn btn-primary align-self-center">Try to win a Ticket</a>
+    </div>
+{% endblock %}
