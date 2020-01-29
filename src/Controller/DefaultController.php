@@ -17,8 +17,13 @@ class DefaultController extends AbstractController
      */
     public function index(PerformanceRepository $performanceRepository, ArtistRepository $artistRepository)
     {
-        $performances = $performanceRepository->findBy([], [], 4);
-        $artists = $artistRepository->findBy([], [], 4);
+        $performances = $performanceRepository->findAll();
+        shuffle($performances);
+        $performances = array_slice($performances, 0, 4);
+
+        $artists = $artistRepository->findAll();
+        shuffle($artists);
+        $artists = array_slice($artists, 0, 4);
 
         return $this->render('homepage/index.html.twig', [
             'artists' => $artists,

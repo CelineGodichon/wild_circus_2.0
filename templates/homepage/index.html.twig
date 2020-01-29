@@ -6,7 +6,9 @@
 
     {% include 'homepage/_carousel.html.twig' %}
     <div class="container">
-        <div class="d-flex flex-column my-5 performances-list">
+
+        <h1 class="typo-horror"> - PERFORMANCES - </h1>
+        <div class="d-flex flex-column my-5 cards-list">
             <div class="row">
                 {% for performance in performances %}
                     <div class="card col-3">
@@ -27,12 +29,13 @@
             </a>
 
         </div>
+        <h1 class="typo-horror"> - ARTISTS - </h1>
 
-        <div class="d-flex flex-column my-5 artists-list">
+        <div class="d-flex flex-column my-5 cards-list">
             <div class="row">
                 {% for artist in artists %}
                     <div class="card col-3">
-                        <img class="card-img-top" src="/uploads/performance/{{ artist.imageName }}"
+                        <img class="card-img-top" src="/uploads/artist/{{ artist.imageName }}"
                              alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{ artist.nickname }}</h5>

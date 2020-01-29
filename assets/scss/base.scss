@@ -2,13 +2,19 @@
   font-family: "Horror";
   src: url("../fonts/AMERICAN_HORROR_STORY.ttf");
 }
-
+.title-navbar{
+  font-family: Horror;
+  font-size : 4rem;
+}
 .typo-horror{
   font-family: Horror;
+  font-size : 4rem;
+  margin: 2rem;
 }
 
 body{
-  background-color: #7a7a7a;
+  background-color: #5e5e5e;
+  background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
   a{
     color : white;
   }

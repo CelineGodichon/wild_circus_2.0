@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container my-5 performances-list">
+    <div class="container my-5 cards-list">
+        <h1 class="typo-horror"> - ARTISTS -</h1>
         <div class="row">
             {% for artist in artists %}
                 <div class="card col-3">
-                    <img class="card-img-top" src="/uploads/performance/{{ artist.imageName }}"
+                    <img class="card-img-top" src="/uploads/artist/{{ artist.imageName }}"
                          alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ artist.nickname }}</h5>

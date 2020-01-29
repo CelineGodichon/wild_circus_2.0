@@ -2,12 +2,18 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArtistRepository")
+ * @Vich\Uploadable()
  */
 class Artist
 {
@@ -27,6 +33,12 @@ class Artist
      * @ORM\Column(type="string", length=255)
      */
     private $imageName;
+
+    /**
+     * @var File
+     * @Vich\UploadableField(mapping="artist", fileNameProperty="imageName")
+     */
+    private $imageFile;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Performance", inversedBy="artists")
@@ -60,15 +72,44 @@ class Artist
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getImageName(): ?string
     {
         return $this->imageName;
     }
 
-    public function setImageName(string $imageName): self
+    /**
+     * @param string $imageName
+     * @return $this
+     */
+    public function setImageName(?string $imageName): self
     {
         $this->imageName = $imageName;
 
+        return $this;
+    }
+
+    /**
+     * @return null|File
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File $imageFile
+     * @return Artist
+     * @throws Exception
+     */
+    public function setImageFile(File $imageFile): Artist
+    {
+        $this->imageFile = $imageFile;
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->updatedAt = new DateTime();
+        }
         return $this;
     }
 
