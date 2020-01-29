@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container my-5 show-performance d-flex flex-column">
+        <div class="performance-img-title my-5">
+            <img src="/uploads/performance/{{ performance.imageName }}" alt="">
+            <h1 class="typo-horror">{{ performance.name }}</h1>
+        </div>
+        <h3>What kind of horror you will see : </h3>
+        <p>{{ performance.description }}</p>
+
+        <h3>Artists</h3>
+        <ul>
+            {% for artist in performance.artists %}
+                <li><a >{{ artist.nickname }}</a></li>
+            {% else %}
+                No artist for this performance
+            {% endfor %}
+        </ul>
+
+        <a href="#" class="btn btn-primary align-self-center">Try to win a Ticket</a>
+    </div>
+{% endblock %}

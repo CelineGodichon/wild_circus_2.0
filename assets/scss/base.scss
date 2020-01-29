@@ -13,6 +13,9 @@
 }
 
 body{
+  .min-footer {
+    min-height: 83vh;
+  }
   background-color: #5e5e5e;
   background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
   a{
@@ -24,5 +27,25 @@ body{
   }
   .card{
     box-shadow: 1px 1px 5px black;
+    .ellipsis-text{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3; /* number of lines to show */
+        line-height: 25px;
+        height: 75px;
+        font-size: 18px;
+
+    }
+  }
+  footer {
+    height : 3rem;
+    background-color: black;
+    .madeWithLove {
+      span {
+        color: $blood;
+      }
+    }
   }
 }

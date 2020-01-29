@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Performance;
 use App\Entity\PerformanceSearch;
 use App\Form\PerformanceSearchType;
 use App\Repository\ArtistRepository;
@@ -78,6 +79,19 @@ class DefaultController extends AbstractController
         return $this->render('wild_circus/artists.html.twig', [
             'artists' => $artists,
 
+        ]);
+    }
+
+    /**
+     * @Route("/performance/show/{id}", name="show_performance", methods={"GET"})
+     * @param Performance $performance
+     * @return Response
+     */
+    public function showOnePerformance(Performance $performance)
+    {
+        return $this->render('wild_circus/show_performance.html.twig', [
+            'performance' => $performance,
+            'id' => $performance->getId()
         ]);
     }
 

@@ -1,0 +1,21 @@
+.show-performance{
+  .performance-img-title {
+    position: relative;
+    text-align: center;
+    color: white;
+    img {
+      width: 50rem;
+      height: auto;
+      overflow: hidden;
+      border-radius: 5px;
+      box-shadow: 1px 1px 4px black;
+    }
+    h1 {
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 5rem;
+    }
+  }
+}
