@@ -1,4 +1,9 @@
 .navbar {
+  .burger-icon{
+    color: $blood;
+    font-family: Horror;
+    font-size : 3rem
+  }
   h1 {
     color: $blood;
     text-shadow: 1px 1px 1px black;
