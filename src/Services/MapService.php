@@ -23,6 +23,7 @@ class MapService
     public function getHideouts(TileRepository $tileRepository)
     {
         $whiteTiles = $tileRepository->findBy(['type' => true]);
+        $whiteTiles = array_slice($whiteTiles, 1);
         shuffle($whiteTiles);
         return array_slice($whiteTiles, 0, 4);
     }
