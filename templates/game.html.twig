@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container-fluid my-5 ">
+        <a href="{{ path('start') }}">START</a>
+        <h1>Map</h1>
+        <div class="row">
+            <div class="col-10">
+                <div class="map">
+                    {% for y in 0..5 %}
+                        <div class="row">
+                            {% for x in 0..6 %}
+                                {% if map[x][y] is defined %}
+                                    <div class="tile col-1 {{ map[x][y].type ? ' ' : 'bg-dark' }}">
+                                        <div class="tile-name">{{ map[x][y].name ?? ' ' }}</div>
+                                        <div class="tile-name coords">{{ map[x][y].coordX }}
+                                            - {{ map[x][y].coordY }}</div>
+                                        {% if user.coordX == x and user.coordY == y %}
+                                            <img class="user img-fluid" src="{{ asset('build/images/user.png') }}"
+                                                 alt="user"/>
+                                        {% endif %}
+                                        {% if map[x][y].isHideout %}
+                                            <img class="user img-fluid" src="{{ asset('build/images/safe.png') }}"
+                                                 alt="user"/>
+                                            {% endif %}
+
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-2">
+
+                <div class="navigation">
+                    <div class="d-flex flex-column hint ">
+                        <button class="btn btn-dark border border-white ">
+                            <a href="{{ path('move', {'direction' :  'N'}) }}"> &#x2191 NORTH</a>
+                        </button>
+                        <div class="d-flex justify-content-around">
+                            <button class="btn btn-dark border border-white mt-1">
+                                <a href="{{ path('move', {'direction' :  'W'}) }}">&#x2190 WEST</a>
+                            </button>
+                            <button class="btn btn-dark border border-white mt-1">
+                                <a href="{{ path('move', {'direction' :  'E'}) }}">EAST &#x2192 </a>
+                            </button>
+                        </div>
+                        <button class="btn btn-dark border border-white mt-1">
+                            <a href="{{ path('move', {'direction' :  'S'}) }}"> &#x2193 SOUTH</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
