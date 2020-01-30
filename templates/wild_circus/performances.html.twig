@@ -24,10 +24,10 @@
                             <p>{{ performance.date|date("d/m/Y H:i:s") }}</p>
                             <p>{{ performance.city.name }}</p>
                             <div class="d-flex justify-content-around">
-                                <a href="{{ path('show_performance', {id : performance.id}) }}" class="btn btn-danger ">
+                                <a href="{{ path('show_performance', {id : performance.id}) }}" class="btn btn-outline-danger text-danger">
                                     <i class="fas fa-eye"></i>
                                 </a>
-                                <a href="{{ path('start', { performance : performance.id}) }}" class="btn btn-outline-danger text-danger">Win a Ticket</a>
+                                <a href="{{ path('start', { performance : performance.id}) }}" class="btn btn-danger">Win a Ticket</a>
                             </div>
                         </div>
                     </div>
