@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="ticket-win">
+        <img src="{{ asset('/build/images/blind-clown.jpg') }}" alt="Blind clowns">
+        <div class="ticket-win-text text-center">
+            <h1> CONGRATULATIONS</h1>
+            <h4>You have earned a ticket to <strong>stay alive</strong> for the performance :</h4>
+            <h1>{{ performance.name }}</h1>
+            <h4>in the city of :</h4>
+            <h1>{{ performance.city.name }}</h1>
+            <h4>All the clowns, bearded things and other monsters will leave you alone.</h4>
+            <a href="{{ path('profile', { user : app.user.id }) }}" class="btn btn-danger my-5">Back to profile</a>
+        </div>
+
+    </div>
+{% endblock %}

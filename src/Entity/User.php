@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -42,6 +44,16 @@ class User implements UserInterface
      * @ORM\Column(type="integer", nullable=true)
      */
     private $coordY;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Performance", inversedBy="users")
+     */
+    private $performances;
+
+    public function __construct()
+    {
+        $this->performances = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -141,6 +153,32 @@ class User implements UserInterface
     public function setCoordY(?int $coordY): self
     {
         $this->coordY = $coordY;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Performance[]
+     */
+    public function getPerformances(): Collection
+    {
+        return $this->performances;
+    }
+
+    public function addPerformance(Performance $performance): self
+    {
+        if (!$this->performances->contains($performance)) {
+            $this->performances[] = $performance;
+        }
+
+        return $this;
+    }
+
+    public function removePerformance(Performance $performance): self
+    {
+        if ($this->performances->contains($performance)) {
+            $this->performances->removeElement($performance);
+        }
 
         return $this;
     }

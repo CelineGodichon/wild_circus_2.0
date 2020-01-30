@@ -25,6 +25,10 @@ body{
     text-decoration: none;
     color : $blood;
   }
+  .btn-danger{
+    background-color: $blood;
+    border: black;
+  }
   .card{
     box-shadow: 1px 1px 5px black;
     .ellipsis-text{

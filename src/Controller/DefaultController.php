@@ -5,10 +5,12 @@ namespace App\Controller;
 use App\Entity\Artist;
 use App\Entity\Performance;
 use App\Entity\PerformanceSearch;
+use App\Entity\User;
 use App\Form\PerformanceSearchType;
 use App\Repository\ArtistRepository;
 use App\Repository\PerformanceRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,11 +22,14 @@ class DefaultController extends AbstractController
 
     /**
      * @Route("/", name="homepage")
+     * @param User $user
      * @param PerformanceRepository $performanceRepository
+     * @param ArtistRepository $artistRepository
      * @return Response
      */
     public function index(PerformanceRepository $performanceRepository, ArtistRepository $artistRepository)
     {
+        $user = $this->getUser();
         $performances = $performanceRepository->findAll();
         shuffle($performances);
         $performances = array_slice($performances, 0, 6);
@@ -36,6 +41,7 @@ class DefaultController extends AbstractController
         return $this->render('homepage/index.html.twig', [
             'artists' => $artists,
             'performances' => $performances,
+            'user' => $user
         ]);
     }
 
@@ -116,6 +122,34 @@ class DefaultController extends AbstractController
     public function boardtable()
     {
         return $this->render('admin/boardtable.html.twig', [
+        ]);
+    }
+
+    /**
+     * @Route("/{performance}/win", name="win")
+     * @param Performance $performance
+     * @return Response
+     */
+    public function winTicket(Performance $performance)
+    {
+        return $this->render('wild_circus/ticket_win.html.twig', [
+            'performance' => $performance,
+        ]);
+    }
+
+    /**
+     * @Route("/{user}/profile", name="profile")
+     * @param User $user
+     * @return Response
+     */
+
+    public function profile(User $user)
+    {
+        $performances = $user->getPerformances();
+
+        return $this->render('wild_circus/profile.html.twig', [
+            'user' => $user,
+            'performances' => $performances
         ]);
     }
 }

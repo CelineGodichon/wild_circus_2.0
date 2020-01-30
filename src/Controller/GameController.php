@@ -76,13 +76,14 @@ class GameController extends AbstractController
         if ($mapManager->tileExists($user->getCoordX(), $user->getCoordY(), $tileRepository)) {
             $em->flush();
 
-
             if ($mapManager->checkTicket($user, $tileRepository)) {
+                $user = $this->getUser();
+                $user->addPerformance($performance);
+                $em->flush();
 
-                $this->addFlash(
-                    'success',
-                    'YOU FOUND THE TICKET ! You are safe... For this time !'
-                );
+                return $this->redirectToRoute('win', [
+                    'performance' => $performance->getId(),
+                ]);
             }
         } else {
             $this->addFlash(

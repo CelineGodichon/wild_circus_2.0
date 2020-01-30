@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
@@ -14,8 +15,8 @@
     {% include '_navbar.html.twig' %}
 {% endblock %}
 {% block flashes %}
-    {%  include '_flashes.html.twig' %}
- {% endblock %}
+    {% include '_flashes.html.twig' %}
+{% endblock %}
 <div class="min-footer">
     {% block body %}{% endblock %}
 </div>
