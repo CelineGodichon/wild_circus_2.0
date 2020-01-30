@@ -4,7 +4,9 @@
 namespace App\Controller;
 
 
+use App\Entity\Performance;
 use App\Entity\Tile;
+use App\Repository\PerformanceRepository;
 use App\Repository\TileRepository;
 use App\Repository\UserRepository;
 use App\Services\MapService;
@@ -12,17 +14,20 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class GameController extends AbstractController
 {
     /**
-     * @Route("/game", name="game")
+     * @Route("/{performance}/game", name="game")
      * @param UserRepository $userRepository
+     * @param SessionInterface $session
      * @return Response
      */
-    public function displayGame(UserRepository $userRepository)
+    public function displayGame(UserRepository $userRepository, SessionInterface $session, Performance $performance)
     {
+
         $em = $this->getDoctrine()->getManager();
         $tiles = $em->getRepository(Tile::class)->findAll();
 
@@ -35,6 +40,7 @@ class GameController extends AbstractController
         return $this->render('game.html.twig', [
             'map' => $map ?? [],
             'user' => $user,
+            'performance' => $performance->getId()
         ]);
 
     }
@@ -84,20 +90,21 @@ class GameController extends AbstractController
             );
         }
 
-            return $this->redirectToRoute('game');
+        return $this->redirectToRoute('game');
 
 
     }
 
     /**
-     * @Route("/start", name="start")
+     * @Route("/{performance}/start", name="start")
+     * @param Performance $performance
      * @param UserRepository $userRepository
      * @param EntityManagerInterface $em
      * @param MapService $mapService
      * @param TileRepository $tileRepository
      * @return RedirectResponse
      */
-    public function start(UserRepository $userRepository, EntityManagerInterface $em, MapService $mapService, TileRepository $tileRepository)
+    public function start(Performance $performance, UserRepository $userRepository, EntityManagerInterface $em, MapService $mapService, TileRepository $tileRepository)
     {
         $user = $this->getUser();
         $user->setCoordX(0);
@@ -109,24 +116,23 @@ class GameController extends AbstractController
         }
 
         $hideouts = $tileRepository->findBy(['isHideout' => true]);
-        foreach ($hideouts as $hideout){
+        foreach ($hideouts as $hideout) {
             $hideout->setIsHideout(false);
         }
         $em->flush();
 
         $newHideouts = $mapService->getHideouts($tileRepository);
-        foreach ($newHideouts as $newHideout){
+        foreach ($newHideouts as $newHideout) {
             $newHideout->setIsHideout(true);
 
         }
         $em->flush();
 
         $mapService->getRandomTile($tileRepository)->setHasTicket(true);
-
-
         $em->flush();
 
-        return $this->redirectToRoute('game');
+        return $this->redirectToRoute('game', [
+            'performance' => $performance->getId()]);
 
     }
 }
