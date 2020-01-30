@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class="container-fluid my-5 ">
+    <div class="container-fluid my-5">
 
-        <div class="row d-flex justify-content-around">
-            <div class="col-10">
+        <div class="row d-flex justify-content-around align-items-center map-complete">
                 <div class="map">
                     {% for y in 0..5 %}
                         <div class="row">
@@ -15,7 +14,7 @@
                                                  alt="user"/>
                                         {% endif %}
                                         {% if map[x][y].isHideout %}
-                                            <img class="user img-fluid " src="{{ asset('build/images/safe.png') }}"
+                                            <img class="user img-fluid" src="{{ asset('build/images/safe-copie.png') }}"
                                                  alt="user"/>
                                         {% endif %}
                                     </div>
@@ -24,12 +23,10 @@
                         </div>
                     {% endfor %}
                 </div>
-            </div>
 
-            <div class="col-2">
                 <div class="navigation">
-                    <div class="d-flex flex-column hint ">
-                        <button class="btn btn-dark border border-white ">
+                    <div class="d-flex flex-column">
+                        <button class="btn btn-dark border border-white">
                             <a href="{{ path('move', {'direction' :  'N', 'performance' : performance }) }}"> &#x2191 NORTH</a>
                         </button>
                         <div class="d-flex justify-content-around">
@@ -45,7 +42,7 @@
                         </button>
                     </div>
                 </div>
-            </div>
+
         </div>
     </div>
 {% endblock %}
