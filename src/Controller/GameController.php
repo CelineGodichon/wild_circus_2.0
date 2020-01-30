@@ -47,13 +47,14 @@ class GameController extends AbstractController
 
     /**
      * @param int $direction
+     * @param Performance $performance
      * @param EntityManagerInterface $em
      * @param MapService $mapManager
      * @param TileRepository $tileRepository
-     * @Route("/direction/{direction}", name="move")
      * @return RedirectResponse
+     * @Route("/{performance}/direction/{direction}", name="move")
      */
-    public function moveDirection($direction, EntityManagerInterface $em, MapService $mapManager, TileRepository $tileRepository)
+    public function moveDirection($direction, Performance $performance, EntityManagerInterface $em, MapService $mapManager, TileRepository $tileRepository)
     {
         $user = $this->getUser();
 
@@ -90,7 +91,9 @@ class GameController extends AbstractController
             );
         }
 
-        return $this->redirectToRoute('game');
+        return $this->redirectToRoute('game', [
+            'performance' => $performance->getId()
+        ]);
 
 
     }

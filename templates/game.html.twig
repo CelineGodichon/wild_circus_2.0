@@ -30,18 +30,18 @@
                 <div class="navigation">
                     <div class="d-flex flex-column hint ">
                         <button class="btn btn-dark border border-white ">
-                            <a href="{{ path('move', {'direction' :  'N'}) }}"> &#x2191 NORTH</a>
+                            <a href="{{ path('move', {'direction' :  'N', 'performance' : performance }) }}"> &#x2191 NORTH</a>
                         </button>
                         <div class="d-flex justify-content-around">
                             <button class="btn btn-dark border border-white mt-1">
-                                <a href="{{ path('move', {'direction' :  'W'}) }}">&#x2190 WEST</a>
+                                <a href="{{ path('move', {'direction' :  'W', 'performance' : performance }) }}">&#x2190 WEST</a>
                             </button>
                             <button class="btn btn-dark border border-white mt-1">
-                                <a href="{{ path('move', {'direction' :  'E'}) }}">EAST &#x2192 </a>
+                                <a href="{{ path('move', {'direction' :  'E', 'performance' : performance }) }}">EAST &#x2192 </a>
                             </button>
                         </div>
                         <button class="btn btn-dark border border-white mt-1">
-                            <a href="{{ path('move', {'direction' :  'S'}) }}"> &#x2193 SOUTH</a>
+                            <a href="{{ path('move', {'direction' :  'S', 'performance' : performance }) }}"> &#x2193 SOUTH</a>
                         </button>
                     </div>
                 </div>
