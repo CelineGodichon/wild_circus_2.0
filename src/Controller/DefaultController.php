@@ -14,6 +14,9 @@ use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
@@ -128,10 +131,22 @@ class DefaultController extends AbstractController
     /**
      * @Route("/{performance}/win", name="win")
      * @param Performance $performance
+     * @param MailerInterface $mailer
      * @return Response
+     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
-    public function winTicket(Performance $performance)
+    public function winTicket(Performance $performance, MailerInterface $mailer)
     {
+        $email = (new Email())
+            ->from($this->getParameter('mailer_from'))
+            ->to($this->getParameter('mailer_from'))
+            ->subject('WILD FREAK CIRCUS : Votre ticket pour ' . $performance->getName() . ' in ' . $performance->getCity()->getName())
+            ->html($this->renderView('/email/new_ticket.html.twig', [
+                'performance' => $performance
+            ]));
+
+        $mailer->send($email);
+
         return $this->render('wild_circus/ticket_win.html.twig', [
             'performance' => $performance,
         ]);

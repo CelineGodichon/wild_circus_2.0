@@ -1,8 +1,7 @@
 .map{
-  border : 15px solid black;
   .tile {
-    height: 100px;
-    min-width: 100px;
+    height: 90px;
+    min-width: 90px;
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
@@ -13,14 +12,31 @@
     &:hover {
       box-shadow: 0 0 1px black;
     }
-    .user {
+    .icon-game{
       width: 4rem;
     }
   }
 }
 
+@keyframes smiley-user {
+  0% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: translate(5px, 5px);
+  }
+  100% {
+    transform: rotate(5deg) translate(0px, 0px);
+  }
+}
+
+.user {
+  animation: 3s linear smiley-user 0s infinite alternate;
+}
+
 .navigation{
   button{
+    margin-top : -8rem;
     padding : 1rem;
     font-family: Horror;;
     font-size: 2rem;

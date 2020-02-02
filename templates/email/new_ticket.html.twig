@@ -1,0 +1,54 @@
+<style>
+    body {
+        background-color: black;
+        color: white;
+    }
+    img {
+        width: 100%;
+        opacity: 0.1;
+    }
+
+    .superpose {
+        position: relative;
+    }
+    .text-superpose {
+        text-align: center;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    h1{
+        color : #b20000;
+        font-family: 'Sigmar One', cursive;
+    }
+    a{
+        color : #b20000;
+        text-decoration: none;
+    }
+    a:hover{
+        text-decoration: none;
+        color: white;
+    }
+</style>
+
+<link href="https://fonts.googleapis.com/css?family=Sigmar+One&display=swap" rel="stylesheet">
+
+<body>
+<div class="superpose">
+    <img src="https://zupimages.net/up/20/05/61ok.jpg" alt="clowns">
+    <div class="text-superpose">
+        <h1 class="main-title">WILD FREAK CIRCUS</h1>
+        <h1>Hello ! </h1>
+        <h3>This is your ticket to stay alive for the performance</h3>
+        <h1>{{ performance.name }}</h1>
+        <h3>in</h3>
+        <h1>{{ performance.city.name }}</h1>
+        <h3>the {{ performance.date|date("d/m/Y H:i:s") }}</h3>
+        <h3>Just show this email when you get attacked and maybe they will let you live.</h3>
+
+        <a href="localhost:8000/performance/show/{{ performance.id }}">See the performance</a>
+    </div>
+</div>
+</body>
