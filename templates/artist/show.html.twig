@@ -18,8 +18,10 @@
                 <td>{{ artist.nickname }}</td>
             </tr>
             <tr>
-                <th>ImageName</th>
-                <td>{{ artist.imageName }}</td>
+                <th>Image</th>
+                <td>
+                    <img class="admin-image" src="/uploads/artist/{{ artist.imageName }}" alt="">
+                <td>
             </tr>
             </tbody>
         </table>

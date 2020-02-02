@@ -8,7 +8,7 @@
                         <div class="row">
                             {% for x in 0..6 %}
                                 {% if map[x][y] is defined %}
-                                    <div class="tile col-1 d-flex align-items-center {{ map[x][y].type ? ' ' : 'bg-dark' }}">
+                                    <div class="tile col-1 d-flex align-items-center {{ map[x][y].type ? 'bg-white' : 'bg-dark' }}">
                                         {% if user.coordX == x and user.coordY == y %}
                                             <img class="user img-fluid" src="{{ asset('build/images/user.png') }}"
                                                  alt="user"/>

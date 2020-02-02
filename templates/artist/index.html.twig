@@ -7,7 +7,7 @@
 
     <h1 class="typo-horror">Artist index</h1>
 
-        <a href="{{ path('artist_new') }}" class="btn btn-secondary m-2">Create new</a>
+        <a href="{{ path('artist_new') }}" class="btn btn-light btn-outline-dark m-2">Create new</a>
 
         <table class="table text-white">
         <thead>
@@ -23,7 +23,8 @@
             <tr>
                 <td>{{ artist.id }}</td>
                 <td>{{ artist.nickname }}</td>
-                <td>{{ artist.imageName }}</td>
+                <td>
+                    <img class="admin-thumbs" src="/uploads/artist/{{ artist.imageName }}" alt="">
                 <td>
                     <a href="{{ path('artist_show', {'id': artist.id}) }}"><i class="fab fa-optin-monster fa-2x"></i></a>
                     <a href="{{ path('artist_edit', {'id': artist.id}) }}"><i class="fas fa-pen-nib fa-2x"></i></a>
