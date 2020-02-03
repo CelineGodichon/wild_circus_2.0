@@ -35,7 +35,7 @@ class DefaultController extends AbstractController
         $user = $this->getUser();
         $performances = $performanceRepository->findAll();
         shuffle($performances);
-        $performances = array_slice($performances, 0, 6);
+        $performances = array_slice($performances, 0, 3);
 
         $artists = $artistRepository->findAll();
         shuffle($artists);
