@@ -36,7 +36,6 @@
 
 .navigation{
   button{
-    margin-top : -8rem;
     padding : 1rem;
     font-family: Horror;;
     font-size: 2rem;
@@ -45,5 +44,17 @@
       text-shadow: 1px 1px 1px black;
 
     }
+  }
+}
+
+@media screen and (max-width: 930px){
+  .map {
+    .tile {
+      height: 70px;
+      min-width: 70px;
+    }
+  }
+  .navigation{
+    margin-top: 2rem;
   }
 }
