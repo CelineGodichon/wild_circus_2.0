@@ -1,0 +1,26 @@
+.navbar {
+  font-size: 1.2rem;
+  .navbar-nav{
+    width: 100%;
+    .nav-list{
+      div{
+        margin-right: 30px;
+      }
+    }
+  }
+  .burger-icon {
+    color: $blood;
+    font-family: Horror;
+    font-size: 3rem
+  }
+
+  h1 {
+    color: $blood;
+    text-shadow: 1px 1px 1px black;
+  }
+
+  a:hover {
+    color: $blood;
+  }
+
+}

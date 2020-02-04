@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artist index{% endblock %}
+
+{% block body %}
+    <div class="container text-white my-5">
+
+    <h1 class="typo-horror">Artist index</h1>
+
+        <a href="{{ path('artist_new') }}" class="btn btn-light btn-outline-dark m-2">Create new</a>
+
+        <table class="table text-white">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nickname</th>
+                <th>ImageName</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for artist in artists %}
+            <tr>
+                <td>{{ artist.id }}</td>
+                <td>{{ artist.nickname }}</td>
+                <td>
+                    <img class="admin-thumbs" src="/uploads/artist/{{ artist.imageName }}" alt="">
+                <td>
+                    <a href="{{ path('artist_show', {'id': artist.id}) }}"><i class="fab fa-optin-monster fa-2x"></i></a>
+                    <a href="{{ path('artist_edit', {'id': artist.id}) }}"><i class="fas fa-pen-nib fa-2x"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Performance index{% endblock %}
+
+{% block body %}
+    <div class="container text-white my-5">
+        <h1 class="typo-horror">Performance index</h1>
+        <a href="{{ path('performance_new') }}" class="btn btn-light btn-outline-dark m-2">Create new</a>
+
+        <table class="table text-white">
+            <thead>
+            <tr class="row">
+                <th class="col-1">Name</th>
+                <th class="col-2">Description</th>
+                <th class="col-2">Image</th>
+                <th class="col-5">Artists</th>
+                <th class="col-2">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for performance in performances %}
+                <tr class="row">
+                    <td class="col-1">{{ performance.name }}</td>
+                    <td class="col-2">{{ performance.description }}</td>
+                    <td class="col-2">
+                        <img class="admin-thumbs" src="/uploads/performance/{{ performance.imageName }}" alt="">
+                    </td>
+                    <td class="col-5 d-flex flex-wrap">
+                        {% for artist in performance.artists %}
+                            <a class="mr-3"
+                               href="{{ path('artist_show', {'id': artist.id}) }}">{{ artist.nickname }} </a>
+                        {% endfor %}
+                    </td>
+                    <td class="col-2">
+                        <a href="{{ path('performance_show', {'id': performance.id}) }}"><i
+                                    class="fab fa-optin-monster fa-2x"></i></a>
+                        <a href="{{ path('performance_edit', {'id': performance.id}) }}"><i
+                                    class="fas fa-pen-nib fa-2x"></i></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}

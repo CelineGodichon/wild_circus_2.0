@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container d-flex flex-column my-5 cards-list">
+        <h1 class="typo-horror"> - PERFORMANCES - </h1>
+        <div class="form-search my-5 align-self-center">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-danger">
+                Search
+            </button>
+            {{ form_end(form) }}
+        </div>
+
+        <div class="row">
+            {% for performance in performances %}
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <div class="card m-1">
+                        <img class="card-img-top" src="/uploads/performance/{{ performance.imageName }}"
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ performance.name }}</h4>
+                            <p class="card-text ellipsis-text">{{ performance.description }} ...</p>
+                            <p>{{ performance.date|date("d/m/Y H:i:s") }}</p>
+                            <p>{{ performance.city.name }}</p>
+                            <div class="d-flex justify-content-around">
+                                <a href="{{ path('show_performance', {id : performance.id}) }}" class="btn btn-outline-danger text-danger">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="{{ path('start', { performance : performance.id}) }}" class="btn btn-danger">Win a Ticket</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="pagination d-flex justify-content-center my-5">
+            {{ knp_pagination_render(performances) }}
+        </div>
+    </div>
+{% endblock %}

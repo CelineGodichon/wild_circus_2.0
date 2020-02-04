@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="boardtable d-flex flex-column align-items-center my-5">
+        <h1 class="typo-horror mb-5"> - BOARDTABLE - </h1>
+        <div class="boardtable-section text-center">
+            <a class="boardtable-link typo-horror" href="{{ path('performance_index') }}">
+                PERFORMANCES
+            </a>
+        </div>
+        <div class="boardtable-section text-center">
+            <a class="boardtable-link typo-horror" href="{{ path('artist_index') }}">
+                ARTISTS
+            </a>
+        </div>
+        <div class="boardtable-section text-center">
+            <a class="boardtable-link typo-horror" href="{{ path('city_index') }}">
+                CITIES
+            </a>
+        </div>
+    </div>
+{% endblock %}

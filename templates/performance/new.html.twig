@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Performance{% endblock %}
+
+{% block body %}
+    <div class="container text-white my-5">
+    <h1 class="typo-horror">Create new Performance</h1>
+
+    {{ include('performance/_form.html.twig') }}
+
+    <a href="{{ path('performance_index') }}">back to list</a>
+    </div>
+{% endblock %}

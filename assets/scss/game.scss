@@ -1,0 +1,60 @@
+.map{
+  .tile {
+    height: 90px;
+    min-width: 90px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    mix-blend-mode: multiply;
+    position: relative;
+    border: black 1px solid;
+
+    &:hover {
+      box-shadow: 0 0 1px black;
+    }
+    .icon-game{
+      width: 4rem;
+    }
+  }
+}
+
+@keyframes smiley-user {
+  0% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: translate(5px, 5px);
+  }
+  100% {
+    transform: rotate(5deg) translate(0px, 0px);
+  }
+}
+
+.user {
+  animation: 3s linear smiley-user 0s infinite alternate;
+}
+
+.navigation{
+  button{
+    padding : 1rem;
+    font-family: Horror;;
+    font-size: 2rem;
+    a{
+      color: $blood;
+      text-shadow: 1px 1px 1px black;
+
+    }
+  }
+}
+
+@media screen and (max-width: 930px){
+  .map {
+    .tile {
+      height: 70px;
+      min-width: 70px;
+    }
+  }
+  .navigation{
+    margin-top: 2rem;
+  }
+}

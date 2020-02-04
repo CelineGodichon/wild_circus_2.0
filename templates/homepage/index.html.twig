@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+    {% include 'homepage/_carousel.html.twig' %}
+    <div class="container">
+
+        <div class="text-center">
+            <p class="typo-horror">- OUR CONCEPT -</p>
+            <div>
+                <p>We come into your town, and our monsters kill everybody...</p>
+                <p>The only way to get out alive, is to try to win a ticket</p>
+                <p class="typo-horror text-center">TRY YOUR LUCK !! </p>
+            </div>
+        </div>
+
+        <h1 class="typo-horror"> - PERFORMANCES - </h1>
+        <div class="d-flex flex-column my-5 cards-list">
+            <div class="row">
+                {% for performance in performances %}
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card m-1">
+                            <img class="card-img-top" src="/uploads/performance/{{ performance.imageName }}"
+                                 alt="Card image cap">
+                            <div class="card-body d-flex flex-column align-items-center">
+                                <h5 class="card-title">{{ performance.name }}</h5>
+                                <p class="card-text ellipsis-text">{{ performance.description }}</p>
+                                <p>{{ performance.date|date("d/m/Y H:i:s") }}</p>
+                                <p>{{ performance.city.name }}</p>
+                                <a href="{{ path('show_performance', {id : performance.id}) }}" class="btn btn-outline-danger">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <a href="{{ path('performances') }}" class="align-self-end mt-3">
+                <button class="btn btn-danger">
+                    See all performances
+                </button>
+            </a>
+
+        </div>
+        <h1 class="typo-horror"> - MONSTERS - </h1>
+
+        <div class="d-flex flex-column my-5 cards-list">
+            <div class="row">
+                {% for artist in artists %}
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card m-1">
+                            <img class="card-img-top" src="/uploads/artist/{{ artist.imageName }}"
+                                 alt="Card image cap">
+                            <div class="card-body d-flex flex-column align-items-center">
+                                <h5 class="card-title">{{ artist.nickname }}</h5>
+                                <a href="{{ path('show_artist', {id : artist.id}) }}" class="btn btn-outline-danger">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <a href="{{ path('artists') }}" class="align-self-end mt-3">
+                <button class="btn btn-danger">
+                    See all artists
+                </button>
+            </a>
+        </div>
+    </div>
+{% endblock %}

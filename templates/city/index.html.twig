@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}City index{% endblock %}
+
+{% block body %}
+    <div class="container text-white my-5">
+
+    <h1 class="typo-horror">City index</h1>
+        <a href="{{ path('city_new') }}" class="btn btn-light btn-outline-dark m-2">Create new</a>
+
+    <table class="table text-white">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for city in cities %}
+            <tr>
+                <td>{{ city.id }}</td>
+                <td>{{ city.name }}</td>
+                <td>
+                    <a href="{{ path('city_show', {'id': city.id}) }}"><i class="fab fa-optin-monster fa-2x"></i></a>
+                    <a href="{{ path('city_edit', {'id': city.id}) }}"><i class="fas fa-pen-nib fa-2x"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+{% endblock %}

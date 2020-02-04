@@ -1,6 +1,10 @@
 @import "~bootstrap/scss/bootstrap";
-
-.kikou{
-
-  color :red;
-}
+@import "vars";
+@import "base";
+@import "homepage";
+@import "boardtable";
+@import "navbar";
+@import "show-performance";
+@import "performances";
+@import "game";
+@import "ticket-win";

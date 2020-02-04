@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container-fluid my-5">
+
+        <div class="row d-flex justify-content-around align-items-center map-complete">
+            <div class="map">
+                {% for y in 0..5 %}
+                    <div class="row">
+                        {% for x in 0..6 %}
+                            {% if map[x][y] is defined %}
+                                <div class="tile col-1 d-flex align-items-center {{ map[x][y].type ? 'bg-white' : 'bg-dark' }}">
+                                    {% if user.coordX == x and user.coordY == y %}
+                                        <img class="icon-game user img-fluid"
+                                             src="{{ asset('build/images/smileyfear.png') }}"
+                                             alt="user"/>
+                                    {% endif %}
+                                    {% if map[x][y].isHideout %}
+                                        <img class="icon-game img-fluid"
+                                             src="{{ asset('build/images/safe-copie.png') }}"
+                                             alt="user"/>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="navigation">
+                <div class="d-flex flex-column align-items-center">
+                    <a href="{{ path('move', {'direction' :  'N', 'performance' : performance }) }}">
+                        <button class="btn btn-dark border border-white">
+                            &#x2191 NORTH
+                        </button>
+                    </a>
+                    <div class="d-flex">
+                        <a href="{{ path('move', {'direction' :  'W', 'performance' : performance }) }}">
+                            <button class="btn btn-dark border border-white mt-1 mr-5">
+                                &#x2190 WEST
+                            </button>
+                        </a>
+                        <a href="{{ path('move', {'direction' :  'E', 'performance' : performance }) }}">
+                            <button class="btn btn-dark border border-white mt-1">
+                                EAST &#x2192
+                            </button>
+                        </a>
+                    </div>
+                    <a href="{{ path('move', {'direction' :  'S', 'performance' : performance }) }}">
+                        <button class="btn btn-dark border border-white mt-5">
+                            &#x2193 SOUTH
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

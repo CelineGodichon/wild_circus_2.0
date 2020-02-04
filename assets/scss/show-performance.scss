@@ -1,0 +1,62 @@
+.show-performance {
+  .performance-img-title {
+    position: relative;
+    text-align: center;
+    color: white;
+
+    img {
+      width: 50rem;
+      height: auto;
+      border-radius: 5px;
+      box-shadow: 1px 1px 4px black;
+    }
+
+    h1 {
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 5rem;
+    }
+  }
+  .performance-infos{
+    color : $blood;
+    text-shadow: 1px 1px white;
+  }
+
+  .artist-list {
+    div {
+      background-color: black;
+      border-radius: 5px;
+      box-shadow: 1px 1px 5px black;
+
+      p {
+        margin: auto;
+        padding: 1rem;
+      }
+
+      img {
+        max-height: 7rem;
+        width: auto;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .show-performance {
+    .performance-img-title {
+      img {
+        width: 30rem;
+        height: auto;
+      }
+      h1 {
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3rem;
+      }
+    }
+  }
+}

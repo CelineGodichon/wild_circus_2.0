@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container my-5 show-performance d-flex flex-column">
+        <div class="performance-img-title my-5">
+            <img src="/uploads/performance/{{ performance.imageName }}" alt="">
+            <h1 class="typo-horror">{{ performance.name }}</h1>
+        </div>
+        <div class="d-flex justify-content-center performance-infos">
+            <h4 class="typo-horror">{{ performance.city.name }} </h4>
+            <h4 class="typo-horror">{{ performance.date|date('d-m-Y') }}</h4>
+        </div>
+        <h3 class="typo-horror">What kind of horror you will see : </h3>
+        <p>{{ performance.description }}</p>
+
+        <h3 class="my-5 typo-horror">All Monsters : </h3>
+        <div class="list-unstyled artist-list d-flex flex-wrap">
+            {% for artist in performance.artists %}
+
+                <a href="{{ path('show_artist', {id : artist.id}) }}">
+                    <div class="m-3 d-flex flex-column align-items-center">
+                        <img src="/uploads/artist/{{ artist.imageName }} " alt="Artist picture">
+                        <p>{{ artist.nickname }}</p>
+                    </div>
+                </a>
+
+            {% else %}
+                No artist for this performance
+            {% endfor %}
+        </div>
+
+        <a href="{{ path('start', { performance : performance.id}) }}"
+           class="btn btn-light btn-outline-danger text-danger align-self-center p-4 typo-horror">Try to win a Ticket</a>
+    </div>
+{% endblock %}
